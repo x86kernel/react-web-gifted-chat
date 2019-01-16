@@ -1,16 +1,19 @@
+/* eslint no-use-before-define: ["error", { "variables": false }], react-native/no-inline-styles: 0 */
+
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   ActivityIndicator,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   ViewPropTypes,
 } from 'react-native';
-import PropTypes from 'prop-types';
+import Color from './Color';
 
 export default class LoadEarlier extends React.Component {
+
   renderLoading() {
     if (this.props.isLoadingEarlier === false) {
       return (
@@ -21,14 +24,12 @@ export default class LoadEarlier extends React.Component {
     }
     return (
       <View>
-        <Text style={[styles.text, this.props.textStyle, {
-            opacity: 0,
-          }]}>
+        <Text style={[styles.text, this.props.textStyle, { opacity: 0 }]}>
           {this.props.label}
         </Text>
         <ActivityIndicator
-          color='white'
-          size='small'
+          color="white"
+          size="small"
           style={[styles.activityIndicator, this.props.activityIndicatorStyle]}
         />
       </View>
@@ -52,6 +53,7 @@ export default class LoadEarlier extends React.Component {
       </TouchableOpacity>
     );
   }
+
 }
 
 const styles = StyleSheet.create({
@@ -63,27 +65,24 @@ const styles = StyleSheet.create({
   wrapper: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#b2b2b2',
+    backgroundColor: Color.defaultColor,
     borderRadius: 15,
     height: 30,
     paddingLeft: 10,
     paddingRight: 10,
   },
   text: {
-    backgroundColor: 'transparent',
-    color: '#fff',
+    backgroundColor: Color.backgroundTransparent,
+    color: Color.white,
     fontSize: 12,
   },
   activityIndicator: {
-    marginTop: Platform.select({
-      ios: -14,
-      android: -16,
-    }),
-  }
+    marginTop: 0,
+  },
 });
 
 LoadEarlier.defaultProps = {
-  onLoadEarlier: () => {},
+  onLoadEarlier: () => { },
   isLoadingEarlier: false,
   label: 'Load earlier messages',
   containerStyle: {},

@@ -1,3 +1,6 @@
+/* eslint no-use-before-define: ["error", { "variables": false }] */
+
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   Image,
@@ -6,7 +9,6 @@ import {
   ViewPropTypes,
   Dimensions,
 } from 'react-native';
-import PropTypes from 'prop-types';
 
 export default class MessageImage extends React.Component {
   render() {
@@ -34,6 +36,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   imageActive: {
+    flex: 1,
     resizeMode: 'contain',
   },
 });

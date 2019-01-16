@@ -1,26 +1,27 @@
+/* eslint no-use-before-define: ["error", { "variables": false }] */
+
+import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ViewPropTypes,
-} from 'react-native';
-import PropTypes  from 'prop-types';
+import { StyleSheet, Text, View, ViewPropTypes } from 'react-native';
 
-import moment from 'moment/min/moment-with-locales.min';
+import moment from 'moment';
 
-export default class Time extends React.Component {
-  render() {
+import Color from './Color';
+import { TIME_FORMAT } from './Constant';
 
-    const locale = window.navigator.userLanguage || window.navigator.language;
-    return (
-      <View style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
-        <Text style={[styles[this.props.position].text, this.props.textStyle[this.props.position]]}>
-          {moment(this.props.currentMessage.createdAt).locale(locale).format('LT')}
-        </Text>
-      </View>
-    );
-  }
+export default function Time(
+  { position, containerStyle, currentMessage, timeFormat, textStyle, timeTextStyle },
+  context,
+) {
+  return (
+    <View style={[styles[position].container, containerStyle[position]]}>
+      <Text style={[styles[position].text, textStyle[position], timeTextStyle[position]]}>
+        {moment(currentMessage.createdAt)
+          .locale(context.getLocale())
+          .format(timeFormat)}
+      </Text>
+    </View>
+  );
 }
 
 const containerStyle = {
@@ -41,7 +42,7 @@ const styles = {
       ...containerStyle,
     },
     text: {
-      color: '#aaa',
+      color: Color.timeTextColor,
       ...textStyle,
     },
   }),
@@ -50,7 +51,7 @@ const styles = {
       ...containerStyle,
     },
     text: {
-      color: '#fff',
+      color: Color.white,
       ...textStyle,
     },
   }),
@@ -67,6 +68,8 @@ Time.defaultProps = {
   },
   containerStyle: {},
   textStyle: {},
+  timeFormat: TIME_FORMAT,
+  timeTextStyle: {},
 };
 
 Time.propTypes = {
@@ -77,6 +80,11 @@ Time.propTypes = {
     right: ViewPropTypes.style,
   }),
   textStyle: PropTypes.shape({
+    left: Text.propTypes.style,
+    right: Text.propTypes.style,
+  }),
+  timeFormat: PropTypes.string,
+  timeTextStyle: PropTypes.shape({
     left: Text.propTypes.style,
     right: Text.propTypes.style,
   }),

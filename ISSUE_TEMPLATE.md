@@ -12,6 +12,7 @@
 
 #### Additional Information
 
-* React Native version: [FILL THIS OUT]
-* react-native-gifted-chat version: [FILL THIS OUT]
-* Platform(s) (iOS, Android, or both?): [FILL THIS OUT]
+* Nodejs version: [FILL THIS OUT]
+* React version: [FILL THIS OUT]
+* react-web-gifted-chat version: [FILL THIS OUT]
+* Browser(s) (Chrome, etc.): [FILL THIS OUT]

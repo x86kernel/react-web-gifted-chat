@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stermedia/react-web-gifted-chat.git"
+    "url": "https://github.com/johniak/react-web-gifted-chat.git"
   },
   "keywords": [
     "react",
@@ -17,9 +17,9 @@
   "author": "Jan Romaniak",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stermedia/react-web-gifted-chat/issues"
+    "url": "https://github.com/johniak/react-web-gifted-chat/issues"
   },
-  "homepage": "https://github.com/stermedia/react-web-gifted-chat#readme",
+  "homepage": "https://github.com/johniak/react-web-gifted-chat#readme",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx",
     "compile": "export BABEL_ENV='production' && rm -rf ./dist && mkdir dist &&  rollup -c -i src/index.js -o dist/index.js"
@@ -58,10 +58,5 @@
     "shallowequal": "1.1.0",
     "uuid": "3.3.2"
   },
-  "peerDependencies": {},
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  }
+  "peerDependencies": {}
 }
