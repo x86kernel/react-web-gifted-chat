@@ -4,7 +4,7 @@ Web fork of most complete chat UI for React Web (formerly known as Gifted Messen
 
 ## Demo is available [here](https://codesandbox.io/s/pw6zzl542x)
 
-![](https://cdn-images-1.medium.com/max/800/1*WegpLcnWtJkcEgxLdyGkxQ.gif)
+![](https://thumbs.gfycat.com/VibrantRecklessIriomotecat-size_restricted.gif)
 
 ## Article
 The article how to create working chat in 20 minutes is available on medium - [here](https://medium.com/@janromaniak/working-realtime-chat-in-react-in-less-than-20-minutes-335f9cf73d69)
