@@ -1,8 +1,13 @@
 # Gifted Chat
 
-Web fork of most complete chat UI for React Native (formerly known as Gifted Messenger).
+Web fork of most complete chat UI for React Web (formerly known as Gifted Messenger).
 
-![](http://i.imgur.com/X7jLrFz.png)
+## Demo is available [here](https://codesandbox.io/s/pw6zzl542x)
+
+![](https://cdn-images-1.medium.com/max/800/1*WegpLcnWtJkcEgxLdyGkxQ.gif)
+
+## Article
+The article how to create working chat in 20 minutes is available on medium - [here](https://medium.com/@janromaniak/working-realtime-chat-in-react-in-less-than-20-minutes-335f9cf73d69)
 
 ## Features
 
@@ -25,7 +30,7 @@ Web fork of most complete chat UI for React Native (formerly known as Gifted Mes
 ## Example
 
 ```jsx
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat } from 'react-web-gifted-chat';
 
 class Example extends React.Component {
 
