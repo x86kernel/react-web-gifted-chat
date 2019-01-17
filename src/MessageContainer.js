@@ -136,7 +136,7 @@ export default class MessageContainer extends React.Component {
           extraData={this.props.extraData}
           enableEmptySections
           automaticallyAdjustContentInsets={false}
-          // inverted={this.props.inverted}
+          inverted={this.props.inverted}
           data={this.props.messages}
           style={styles.listStyle}
           contentContainerStyle={styles.contentContainerStyle}
