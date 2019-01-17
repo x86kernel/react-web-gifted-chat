@@ -10,14 +10,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FlatList, View, StyleSheet, Keyboard, TouchableOpacity, Text } from 'react-native';
+import { FlatList, View, StyleSheet, Keyboard, Text } from 'react-native';
 
 import LoadEarlier from './LoadEarlier';
 import Message from './Message';
 import Color from './Color';
+import WebScrollView from './WebScrollView';
+import TouchableOpacity from './TouchableOpacity';
 
 export default class MessageContainer extends React.Component {
-
   state = {
     showScrollBottom: false,
   }
@@ -64,8 +65,6 @@ export default class MessageContainer extends React.Component {
   scrollToBottom = () => {
     this.scrollTo({ offset: 0, animated: 'true' });
   }
-
-
 
   renderRow = ({ item, index }) => {
     if (!item.id && item.id !== 0) {
@@ -116,7 +115,7 @@ export default class MessageContainer extends React.Component {
     return scrollToBottomComponent;
   }
 
-  keyExtractor = (item) => `${item.id}`;
+  keyExtractor = item => `${item.id}`;
 
   render() {
     if (this.props.messages.length === 0) {
@@ -126,31 +125,28 @@ export default class MessageContainer extends React.Component {
       <View
         style={{ flex: 1 }}
         onLayout={() => {
-          //this.flatListRef.current.scrollTo({x: 0, y: 0, animated: true});
+          // this.flatListRef.current.scrollTo({x: 0, y: 0, animated: true});
         }
       }
       >
-      {this.state.showScrollBottom && this.props.scrollToBottom ? this.renderScrollToBottomWrapper() : null}
-        <FlatList
+        {this.state.showScrollBottom && this.props.scrollToBottom ? this.renderScrollToBottomWrapper() : null}
+        <WebScrollView
           ref={this.flatListRef}
           keyExtractor={this.keyExtractor}
           extraData={this.props.extraData}
           enableEmptySections
           automaticallyAdjustContentInsets={false}
-          inverted={this.props.inverted}
+          // inverted={this.props.inverted}
           data={this.props.messages}
           style={styles.listStyle}
           contentContainerStyle={styles.contentContainerStyle}
           renderItem={this.renderRow}
-          {...this.props.invertibleScrollViewProps}
           ListFooterComponent={this.renderHeaderWrapper}
           ListHeaderComponent={this.renderFooter}
-          {...this.props.listViewProps}
         />
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({

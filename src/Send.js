@@ -2,8 +2,9 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, ViewPropTypes } from 'react-native';
+import { StyleSheet, Text, View, ViewPropTypes } from 'react-native';
 import Color from './Color';
+import TouchableOpacity from './TouchableOpacity';
 
 export default function Send({ text, containerStyle, onSend, children, textStyle, label, alwaysShowSend }) {
   if (alwaysShowSend || text.trim().length > 0) {

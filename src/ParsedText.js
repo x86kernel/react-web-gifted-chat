@@ -21,7 +21,6 @@ const customParseShape = PropTypes.shape({
 });
 
 class ParsedText extends React.Component {
-
   static displayName = 'ParsedText';
 
   static propTypes = {
@@ -42,7 +41,7 @@ class ParsedText extends React.Component {
 
   getPatterns() {
     return this.props.parse.map((option) => {
-      const {type, ...patternOption} = option;
+      const { type, ...patternOption } = option;
       if (type) {
         if (!PATTERNS[type]) {
           throw new Error(`${option.type} is not a supported type`);
@@ -55,33 +54,34 @@ class ParsedText extends React.Component {
   }
 
   getParsedText() {
-    if (!this.props.parse)                       { return this.props.children; }
+    if (!this.props.parse) { return this.props.children; }
     if (typeof this.props.children !== 'string') { return this.props.children; }
 
     const textExtraction = new TextExtraction(this.props.children, this.getPatterns());
-    const  childrenProps  = this.props.childrenProps||{};
-    return textExtraction.parse().map((props, index) => {
-      return (
-        <ReactNative.Text
-          key={`parsedText-${index}`}
-          {...childrenProps}
-          {...props}
-        />
-      );
-    });
+    const childrenProps = this.props.childrenProps || {};
+    const props = { ...this.props };
+    delete props.childrenProps;
+    return textExtraction.parse().map((props, index) => (
+      <ReactNative.Text
+        key={`parsedText-${index}`}
+        {...childrenProps}
+        {...props}
+      />
+    ));
   }
 
   render() {
+    const props = { ...this.props };
+    delete props.childrenProps;
     return (
       <ReactNative.Text
         ref={ref => this._root = ref}
-        {...this.props}
+        {...props}
       >
         {this.getParsedText()}
       </ReactNative.Text>
     );
   }
-
 }
 
 export default ParsedText;

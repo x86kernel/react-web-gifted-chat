@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Text, Clipboard, StyleSheet, TouchableWithoutFeedback, View, ViewPropTypes } from 'react-native';
+import { Text, Clipboard, StyleSheet, View, ViewPropTypes } from 'react-native';
 
 
 import MessageText from './MessageText';
@@ -14,6 +14,7 @@ import Time from './Time';
 import Color from './Color';
 
 import { isSameUser, isSameDay } from './utils';
+import TouchableOpacity from './TouchableOpacity';
 
 export default class Bubble extends React.Component {
 
@@ -164,7 +165,8 @@ export default class Bubble extends React.Component {
             this.handleBubbleToPrevious(),
           ]}
         >
-          <TouchableWithoutFeedback
+          <TouchableOpacity
+            withoutFeedback
             onLongPress={this.onLongPress}
             accessibilityTraits="text"
             {...this.props.touchableProps}
@@ -180,7 +182,7 @@ export default class Bubble extends React.Component {
                 {this.renderTicks()}
               </View>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
         </View>
       </View>
     );

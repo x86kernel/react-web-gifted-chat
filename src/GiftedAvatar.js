@@ -2,8 +2,9 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import Color from './Color';
+import TouchableOpacity from './TouchableOpacity';
 
 const { carrot, emerald, peterRiver, wisteria, alizarin, turquoise, midnightBlue } = Color;
 
@@ -34,9 +35,9 @@ export default class GiftedAvatar extends React.Component {
   renderAvatar() {
     if (typeof this.props.user.avatar === 'function') {
       return this.props.user.avatar();
-    } else if (typeof this.props.user.avatar === 'string') {
+    } if (typeof this.props.user.avatar === 'string') {
       return <Image source={{ uri: this.props.user.avatar }} style={[styles.avatarStyle, this.props.avatarStyle]} />;
-    } else if (typeof this.props.user.avatar === 'number') {
+    } if (typeof this.props.user.avatar === 'number') {
       return <Image source={this.props.user.avatar} style={[styles.avatarStyle, this.props.avatarStyle]} />;
     }
     return null;
@@ -84,7 +85,7 @@ export default class GiftedAvatar extends React.Component {
             this.props.onPress(other);
           }
         }}
-        style={[styles.avatarStyle, { backgroundColor: this.avatarColor }, this.props.avatarStyle]}
+        style={{ ...styles.avatarStyle, backgroundColor: this.avatarColor, ...this.props.avatarStyle }}
         accessibilityTraits="image"
       >
         {this.renderInitials()}
@@ -95,6 +96,7 @@ export default class GiftedAvatar extends React.Component {
 
 const styles = {
   avatarStyle: {
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: 40,
