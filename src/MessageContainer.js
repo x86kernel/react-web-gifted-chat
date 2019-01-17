@@ -31,7 +31,7 @@ export default class MessageContainer extends React.Component {
     );
   }
 
-  renderFooter() {
+  renderFooter = () => {
     if (this.props.renderFooter) {
       const footerProps = {
         ...this.props,

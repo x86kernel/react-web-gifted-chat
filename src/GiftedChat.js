@@ -94,12 +94,11 @@ class GiftedChat extends React.Component {
     return inverted ? currentMessages.concat(messages) : messages.concat(currentMessages);
   }
 
-  // getChildContext() {
-  //   return {
-  //     actionSheet: () => this._actionSheetRef,
-  //     getLocale: this.getLocale,
-  //   };
-  // }
+  getChildContext() {
+    return {
+      getLocale: this.getLocale,
+    };
+  }
 
   componentWillMount() {
     const { messages, text } = this.props;
@@ -477,6 +476,10 @@ const styles = StyleSheet.create({
     height: '100%'
   },
 });
+
+GiftedChat.childContextTypes = {
+  getLocale: PropTypes.func,
+};
 
 GiftedChat.defaultProps = {
   messages: [],

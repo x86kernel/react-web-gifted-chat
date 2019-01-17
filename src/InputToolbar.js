@@ -18,7 +18,7 @@ export default class InputToolbar extends React.Component {
     this.keyboardWillHide = this.keyboardWillHide.bind(this);
 
     this.state = {
-      position: 'absolute',
+      position: 'static',
     };
   }
 
