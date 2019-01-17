@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import React, {createRef} from 'react';
-
-import {
-  FlatList,
-  View,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
-import PropTypes from 'prop-types';
-
-import shallowequal from 'shallowequal';
-import md5 from 'md5';
-=======
 /* eslint
     no-console: 0,
     no-param-reassign: 0,
@@ -26,7 +12,6 @@ import React from 'react';
 
 import { FlatList, View, StyleSheet, Keyboard, TouchableOpacity, Text } from 'react-native';
 
->>>>>>> 553224d0fc5ccf932bae80e4836a922ce58c6d5d
 import LoadEarlier from './LoadEarlier';
 import Message from './Message';
 import Color from './Color';
