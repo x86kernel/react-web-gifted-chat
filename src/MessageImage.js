@@ -9,19 +9,38 @@ import {
   ViewPropTypes,
   Dimensions,
 } from 'react-native';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+import TouchableOpacity from './TouchableOpacity';
 
 export default class MessageImage extends React.Component {
-  render() {
-    const {width, height} = Dimensions.get('window');
+  state = {
+    isOpen: false,
+  };
 
+  onClickImage = () => {
+    this.setState({ isOpen: true });
+  }
+
+  render() {
+    const { isOpen } = this.state;
     return (
-      <View style={[styles.container, this.props.containerStyle]}>
+      <TouchableOpacity
+        onPress={this.onClickImage}
+        style={[styles.container, this.props.containerStyle]}
+      >
         <Image
           {...this.props.imageProps}
           style={[styles.image, this.props.imageStyle]}
-          source={{uri: this.props.currentMessage.image}}
+          source={{ uri: this.props.currentMessage.image }}
         />
-      </View>
+        {isOpen && (
+          <Lightbox
+            mainSrc={this.props.currentMessage.image}
+            onCloseRequest={() => this.setState({ isOpen: false })}
+          />
+        )}
+      </TouchableOpacity>
     );
   }
 }

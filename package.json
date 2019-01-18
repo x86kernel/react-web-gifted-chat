@@ -45,7 +45,8 @@
     "rollup": "^0.67.4",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-postcss": "^1.6.3"
   },
   "dependencies": {
     "md5": "2.2.1",
@@ -56,6 +57,7 @@
     "react-art": "^16.6.3",
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.6.3",
+    "react-image-lightbox": "^5.1.0",
     "react-native-web": "0.9.9",
     "shallowequal": "1.1.0",
     "uuid": "3.3.2"

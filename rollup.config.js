@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
 import fs from 'fs';
 
 
@@ -31,6 +32,9 @@ export default {
     babel({
       runtimeHelpers: true,
       exclude: 'node_modules/**',
+    }),
+    postcss({
+      plugins: [],
     }),
   ],
 };
