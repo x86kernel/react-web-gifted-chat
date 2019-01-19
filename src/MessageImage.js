@@ -16,28 +16,52 @@ import TouchableOpacity from './TouchableOpacity';
 export default class MessageImage extends React.Component {
   state = {
     isOpen: false,
+    messageIndex: 0,
   };
 
   onClickImage = () => {
     this.setState({ isOpen: true });
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (state.isOpen) {
+      return {};
+    }
+    const { imageMessages, currentMessage } = props;
+    const messagesIds = imageMessages.map(item => item.id);
+    const messageIndex = messagesIds.indexOf(currentMessage.id);
+    return { messageIndex };
+  }
+
   render() {
-    const { isOpen } = this.state;
+    const { imageMessages, currentMessage, imageProps, containerStyle, imageStyle } = this.props;
+    const { isOpen, messageIndex } = this.state;
+    if (isOpen) { console.log('messageIndex', messageIndex); }
     return (
       <TouchableOpacity
         onPress={this.onClickImage}
-        style={[styles.container, this.props.containerStyle]}
+        style={[styles.container, containerStyle]}
       >
         <Image
-          {...this.props.imageProps}
+          {...imageProps}
           style={[styles.image, this.props.imageStyle]}
-          source={{ uri: this.props.currentMessage.image }}
+          source={{ uri: currentMessage.image }}
         />
         {isOpen && (
           <Lightbox
-            mainSrc={this.props.currentMessage.image}
             onCloseRequest={() => this.setState({ isOpen: false })}
+            mainSrc={imageMessages[messageIndex].image}
+            nextSrc={imageMessages[(messageIndex + 1) % imageMessages.length].image}
+            prevSrc={imageMessages[(messageIndex + imageMessages.length - 1) % imageMessages.length].image}
+            onMovePrevRequest={() => this.setState({
+              messageIndex: (messageIndex + imageMessages.length - 1) % imageMessages.length,
+            })
+            }
+            onMoveNextRequest={() => this.setState({
+              messageIndex: (messageIndex + 1) % imageMessages.length,
+            })
+            }
+
           />
         )}
       </TouchableOpacity>

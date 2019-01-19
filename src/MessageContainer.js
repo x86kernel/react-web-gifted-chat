@@ -21,6 +21,7 @@ import TouchableOpacity from './TouchableOpacity';
 export default class MessageContainer extends React.Component {
   state = {
     showScrollBottom: false,
+    imageMessages: [],
   }
 
 
@@ -30,6 +31,12 @@ export default class MessageContainer extends React.Component {
     return (
       next.length !== current.length || next.extraData !== current.extraData || next.loadEarlier !== current.loadEarlier
     );
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { messages } = props;
+    const imageMessages = messages.filter(item => item.image);
+    return { imageMessages };
   }
 
   renderFooter = () => {
@@ -79,6 +86,7 @@ export default class MessageContainer extends React.Component {
     const { messages, ...restProps } = this.props;
     const previousMessage = messages[index + 1] || {};
     const nextMessage = messages[index - 1] || {};
+    const { imageMessages } = this.state;
 
     const messageProps = {
       ...restProps,
@@ -87,6 +95,7 @@ export default class MessageContainer extends React.Component {
       previousMessage,
       nextMessage,
       position: item.user.id === this.props.user.id ? 'right' : 'left',
+      imageMessages,
     };
 
     if (this.props.renderMessage) {
