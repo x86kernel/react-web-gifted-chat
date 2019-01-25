@@ -40,7 +40,7 @@ export default class MessageImage extends React.Component {
     return (
       <TouchableOpacity
         onPress={this.onClickImage}
-        style={[styles.container, containerStyle]}
+        style={{ ...styles.container, ...containerStyle }}
       >
         <Image
           {...imageProps}
