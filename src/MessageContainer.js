@@ -18,19 +18,10 @@ import Color from './Color';
 import WebScrollView from './WebScrollView';
 import TouchableOpacity from './TouchableOpacity';
 
-export default class MessageContainer extends React.Component {
+export default class MessageContainer extends React.PureComponent {
   state = {
     showScrollBottom: false,
     imageMessages: [],
-  }
-
-
-  shouldComponentUpdate(nextProps) {
-    const next = nextProps.messages;
-    const current = this.props.messages;
-    return (
-      next.length !== current.length || next.extraData !== current.extraData || next.loadEarlier !== current.loadEarlier
-    );
   }
 
   static getDerivedStateFromProps(props, state) {
