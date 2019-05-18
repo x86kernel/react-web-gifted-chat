@@ -13,7 +13,7 @@ export default function Send({ text, containerStyle, onSend, children, textStyle
         testID="send"
         accessible
         accessibilityLabel="send"
-        style={[styles.container, containerStyle]}
+        style={{ ...styles.container, ...containerStyle }}
         onPress={() => {
           onSend({ text: text.trim() }, true);
         }}

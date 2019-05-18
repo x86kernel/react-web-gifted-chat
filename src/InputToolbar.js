@@ -10,7 +10,6 @@ import Actions from './Actions';
 import Color from './Color';
 
 export default class InputToolbar extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -51,7 +50,7 @@ export default class InputToolbar extends React.Component {
   renderActions() {
     if (this.props.renderActions) {
       return this.props.renderActions(this.props);
-    } else if (this.props.onPressActionButton) {
+    } if (this.props.onPressActionButton) {
       return <Actions {...this.props} />;
     }
     return null;
@@ -83,7 +82,7 @@ export default class InputToolbar extends React.Component {
 
   render() {
     return (
-      <View style={[styles.container, this.props.containerStyle, { position: this.state.position }]}>
+      <View style={[styles.container, this.props.containerStyle, { position: this.state.position, height: this.props.composerHeight }]}>
         <View style={[styles.primary, this.props.primaryStyle]}>
           {this.renderActions()}
           {this.renderComposer()}
@@ -93,7 +92,6 @@ export default class InputToolbar extends React.Component {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({

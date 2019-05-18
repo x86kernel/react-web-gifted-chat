@@ -9,7 +9,7 @@ messages.push(generateMessage(`Idylla 2`, 3,  {image:'https://www.wykop.pl/cdn/c
 messages.push(generateMessage(`Goood 1`, 2, {image:'http://img2.dmty.pl//uploads/201010/1286036107_by_julia2332_600.jpg'}));
 messages.push(generateMessage(`This is a great example of system message`, 2, {system: true}));
 
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 30; i++) {
   messages.push(generateMessage(loremIpsum.substring(0,(Math.random() * 100000)%loremIpsum.length), i))
 }
 
@@ -67,20 +67,23 @@ class App extends Component {
 }
 const styles = {
   container: {
-    display:'flex',
-    flexDirection: 'row',
-    height: '100vh'
+    flex: 1,
+    display: "flex",
+    flexDirection: "row",
+    height: "100vh",
   },
   conversationList: {
     display:'flex',
     flex: 1,
   },
   chat: {
-    display:'flex',
+    display: "flex",
     flex: 3,
-    borderWidth: '1px',
-    borderColor: '#ccc',
-    borderStyle: 'solid'
+    flexDirection: "column",
+    borderWidth: "1px",
+    borderColor: "#ccc",
+    borderRightStyle: "solid",
+    borderLeftStyle: "solid",
   },
   converationDetails: {
     display:'flex',
