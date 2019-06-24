@@ -237,9 +237,6 @@ class GiftedChat extends React.Component {
   }
 
   resetInputToolbar() {
-    if (this.textInput) {
-      this.textInput.clear();
-    }
     this.notifyInputTextReset();
     this.setState({
       text: this.getTextFromProp(''),

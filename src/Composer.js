@@ -28,20 +28,27 @@ export default class Composer extends React.Component {
     this.props.onTextChanged(text);
   }
 
+  onKeyDown(e) {
+    const { text, onSend } = this.props;
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      onSend({ text: text.trim() }, true);
+      e.preventDefault();
+    }
+    return false;
+  }
+
   render() {
     return (
-      <TextInput
+      <textarea
         testID={this.props.placeholder}
         accessible
+        onKeyDown={e => this.onKeyDown(e)}
         accessibilityLabel={this.props.placeholder}
         placeholder={this.props.placeholder}
         placeholderTextColor={this.props.placeholderTextColor}
         multiline={this.props.multiline}
-        onChange={e => this.onContentSizeChange(e)}
-        onContentSizeChange={e => this.onContentSizeChange(e)}
-        onChangeText={text => this.onChangeText(text)}
-        style={[styles.textInput, this.props.textInputStyle, { height: this.props.composerHeight - 1 }]}
-        autoFocus={this.props.textInputAutoFocus}
+        onChange={event => this.onChangeText(event.target.value)}
+        style={{ ...styles.textInput, ...this.props.textInputStyle }}
         value={this.props.text}
         enablesReturnKeyAutomatically
         underlineColorAndroid="transparent"
@@ -52,17 +59,22 @@ export default class Composer extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   textInput: {
-    flex: 1,
     marginLeft: 10,
     fontSize: 16,
-    lineHeight: 16,
+    lineHeight: '16px',
     paddingTop: 3,
     paddingBottom: 3,
     outline: 'none',
+    border: 'none',
+    overflow: 'auto',
+    boxShadow: 'none',
+    resize: 'none',
+    width: '100%',
   },
-});
+};
+
 
 Composer.defaultProps = {
   composerHeight: MIN_COMPOSER_HEIGHT,
