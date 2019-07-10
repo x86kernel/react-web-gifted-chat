@@ -19,8 +19,15 @@ export default class MessageImage extends React.Component {
     messageIndex: 0,
   };
 
-  onClickImage = () => {
-    this.setState({ isOpen: true });
+  onClickImage = (currentImage) => {
+    const { imageMessages, } = this.props
+
+    const currentImageIndex = imageMessages.findIndex(message => message.image === currentImage)
+
+    this.setState({ 
+      isOpen: true,
+      messageIndex: currentImageIndex,
+    });
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -36,10 +43,10 @@ export default class MessageImage extends React.Component {
   render() {
     const { imageMessages, currentMessage, imageProps, containerStyle, imageStyle } = this.props;
     const { isOpen, messageIndex } = this.state;
-    if (isOpen) { console.log('messageIndex', messageIndex); }
+
     return (
       <TouchableOpacity
-        onPress={this.onClickImage}
+        onPress={() => this.onClickImage(currentMessage.image)}
         style={{ ...styles.container, ...containerStyle }}
       >
         <Image
